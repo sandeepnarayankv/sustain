@@ -12,7 +12,7 @@ safe: true
 
 # edit here to achieve your personal greatness
 url: http://sandeepnarayankv.github.io/
-baseurl: /sustain/
+baseurl: /mysite/
 title: Sandeep Narayan
 author: Sandeep Narayan Kizhakke Veettil
 description: Sandeep's Personal blog and resume
@@ -21,7 +21,7 @@ email: sandeep.narayan.kv@gmail.com
 github: sandeepnarayankv
 twitter: sandeepnkv
 linkedin: sandeepnarayankv
-stackoverflow: username   #e.g: users/2735833/proton1h1
+stackoverflow: users/16828099/sandeep-narayan   #e.g: users/2735833/proton1h1
 medium: sandeep.narayan.kv #e.g: NobelPeaceOslo
 #Comment out if you don't want disqus
 #disqus: username
