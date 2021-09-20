@@ -8,9 +8,10 @@ tags:
 - Database
 - SQL
 - MySQL
+- Database Concepts
 ---
 
-An overview of the basic Database Concepts is what I could think of as a fitting initial post. as the post will be long even if it is just an overview, hence i have decided to split the post into two. This is the part I and I will publish the part II soon.
+An overview of the basic Database Concepts is what I could think of as a fitting initial post. as the post will be long even if it is just an overview, hence i have decided to split the post into two. This is the part I and I will publish the [Part II](https://sandeepnarayankv.github.io/mysite//Database_Concepts_2.html) soon.
 
 When we talk about Database Concepte the best place to start is Data.
 
@@ -38,7 +39,7 @@ There are multiple types of DBMS Systems, the major ones are,
 
 2. **Network DBMS** - Similar to Hierarchical DBMS, but follows Many to Many relationships (1 Parent, Multiple Childs. 1 Child, Multiple Parents).
 
-3. **Object Oriented DBMS** - Information is represented as Objects with delation ships between Objects. Similar to Object Oriented Program Languages.
+3. **Object Oriented DBMS** - Information is represented as Objects with relationships between Objects. Similar to Object Oriented Program Languages.
 
 4. **NO-SQL** - A popular alternative to relational databases, NoSQL databases take a variety of forms and allow you to store and manipulate large amounts of unstructured and semi-structured data. Popular example is MongoDB.
 
@@ -95,10 +96,10 @@ Major Characteristics of RDBMS systems are:
 Users: multiple users access.
 - Can handle large amount of data.
 - Easy Data Handling: 
-- - Faster Data Access.
-- - Data redundancy or duplicity is avoided (Keys, Indexes & normalization)
+    - Faster Data Access.
+    - Data redundancy or duplicity is avoided (Keys, Indexes & normalization)
 - Higher Data consistency because to Atomicity Consistency Isolation Durability (ACID) properties.
-- Higer Fault Tolerance due simultaneous access and helps system recovery as a result od replication.
+- Higher Fault Tolerance due simultaneous access and helps system recovery as a result od replication.
 
 #### **Disdvantages of RDBMS**
 
