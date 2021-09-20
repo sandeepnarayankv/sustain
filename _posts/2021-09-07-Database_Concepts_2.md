@@ -50,7 +50,7 @@ SQL helps to,
 Used to define database schema. used to create, modify or delete structure of schema objects. These commands are auto committed and will save to database permanently.
 The main commands are
 
-1. **CREATE** - used to create schema objects
+- **CREATE** - used to create schema objects
 
 eg.:
 ```
@@ -61,7 +61,7 @@ eg.:
      dob   DATE
   );  
 ```
-2. **DROP** - used to delete schema objects
+- **DROP** - used to delete schema objects
 
 eg.:
 
@@ -69,7 +69,7 @@ eg.:
  DROP TABLE employee;   
 ```
 
-3. **ALTER** - used to alter the structure of schema objects
+- **ALTER** - used to alter the structure of schema objects
 
 eg.:
 
@@ -80,7 +80,7 @@ eg.:
  ALTER TABLE employee
   MODIFY (name VARCHAR2(40));   
 ```
-4. **TRUNCATE** - used to remove all records from a table.
+- **TRUNCATE** - used to remove all records from a table.
 
 eg.:
 
@@ -88,7 +88,7 @@ eg.:
  TRUNCATE TABLE employee;   
 ```
 
-5. **COMMENT** - used to add comment to data dictionary.
+- **COMMENT** - used to add comment to data dictionary.
 
 eg.:
 
@@ -101,7 +101,7 @@ Multi Line Comment
  TRUNCATE TABLE employee;  
 ```
 
-6. **RENAME** - used to rename a schema object.
+- **RENAME** - used to rename a schema object.
 
 eg.:
 
@@ -127,7 +127,7 @@ WHERE  origin = 'pa';
 
 SQL Commands used for manipulation of data present in database.DML is not auto committed and cannot save the changes permanently. This can be rolledback.
 
-1. **INSERT** - used to insert data into a table.
+- **INSERT** - used to insert data into a table.
 
 eg.:
 
@@ -143,7 +143,7 @@ VALUES      ('Sonoo',
              '11, Newyork'); 
 ```
 
-2. **UPDATE** - used to update data in a table.
+- **UPDATE** - used to update data in a table.
 
 eg.:
 
@@ -153,7 +153,7 @@ SET    full_name = 'Sandeep'
 WHERE  full_name = 'Sonoo';
 ```
 
-3. **DELETE** - used to delete data from table.
+- **DELETE** - used to delete data from table.
 
 eg.:
 
@@ -166,7 +166,7 @@ WHERE  full_name = 'Sonoo';
 
 SQL Commands used for grant & revoke rights & permissions to database systems & objects.
 
-1. **GRANT** - used to give users privilages to database systems & objects.
+- **GRANT** - used to give users privilages to database systems & objects.
 
 eg.:
 
@@ -174,7 +174,7 @@ eg.:
  GRANT SELECT, UPDATE ON employee TO sandeep, raj;   
 ```
 
-2. **REVOKE** - used to revoke or takeback privilages to database systems & objects from an user.
+- **REVOKE** - used to revoke or takeback privilages to database systems & objects from an user.
 
 eg.:
 
@@ -186,7 +186,7 @@ eg.:
 
 SQL Commands used to deal with Transactions within a database. These commands are used with DML commands to automatically commit or rollback transactions. They auto commit and cannot be reverted.
 
-1. **COMMIT** - used to save/commit transactions.
+- **COMMIT** - used to save/commit transactions.
 
 eg.:
 
@@ -194,7 +194,7 @@ eg.:
  COMMIT;   
 ```
 
-2. **ROLLBACK** - used to revert/rollback a transaction in case of failures or errors.
+- **ROLLBACK** - used to revert/rollback a transaction in case of failures or errors.
 
 eg.:
 
@@ -202,7 +202,7 @@ eg.:
  ROLLBACK;  
 ```
 
-3. **SAVEPOINT** - used to set savepoint within a transaction.
+- **SAVEPOINT** - used to set savepoint within a transaction.
 
 eg.:
 
@@ -210,7 +210,7 @@ eg.:
  SAVEPOINT SAVEPOINT_NAME;  
 ```
 
-4. **SET TRANSACTION** - used to specify charecteristics of a transaction. Used to establish the current transaction as read-only or read/write, establish its isolation level, assign it to a specified rollback segment, or assign a name to the transaction.
+- **SET TRANSACTION** - used to specify charecteristics of a transaction. Used to establish the current transaction as read-only or read/write, establish its isolation level, assign it to a specified rollback segment, or assign a name to the transaction.
 
 eg.:
 
