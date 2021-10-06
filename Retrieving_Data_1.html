@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta name="author" content="Sandeep Narayan Kizhakke Veettil" />
+    <meta name="description" content="Sandeep's Personal blog and resume">
+    <link rel="shortcut icon" type="image/x-icon" href="/mysite/static/img/favicon.ico">
+
+    
+      <title>Retrieving Data in SQL I</title>
+    
+
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+    crossorigin="anonymous">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="/mysite/static/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="/mysite/static/css/syntax.css" />
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+  <!-- Main Body-->
+  <body>
+  <!-- Wrap all page content here -->
+  <div id="wrap">
+    <!-- Navbar header -->
+    <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/mysite/"><i class="fa fa-home"></i></a>
+    </div>
+    <div id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/mysite/blog.html">BLOG</a></li>
+        <li><a href="/mysite/projects.html">PROJECTS</a></li>
+        <li><a href="http://sandeepnarayankv.github.io/vitae">RESUME</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="container">
+	<div class="blog-post">
+		<h3>
+		  <strong><a href="/Retrieving_Data_1.html">Retrieving Data in SQL I</a></strong>
+		</h3>
+	</div>
+	<div class="blog-title">
+		<h4>
+		September 10, 2021
+			&nbsp;&nbsp;
+			
+			 <span class="label label-success">Tags</span>
+			
+			 <span class="label label-success">Blog</span>
+			
+			 <span class="label label-success">Post</span>
+			
+			 <span class="label label-success">Database</span>
+			
+			 <span class="label label-success">SQL</span>
+			
+			 <span class="label label-success">MySQL</span>
+			
+			 <span class="label label-success">Data Types</span>
+			
+			 <span class="label label-success">Retrieving Data</span>
+			
+		</h4>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="blogpost">
+			  <p>In this series we will looking at concepts which are related to retrieving data in SQL. This is the first post of the series. We will discuss about various data types, NULL values, how to get the details of DB objects using DESC[RIBE] and INFO[RMATION][+] commands and also touch base on error messages, DUAL table, Quote Operator, Arithmetic operators, DISTINCT &amp; Unique Keywords and concatenation operators, not necessarily in that order in this series.</p>
+
+<h3 id="data-types"><strong>Data Types</strong></h3>
+
+<p>Columns, variables &amp; expressions stores different types of data, the attribute that specifies the type of data in the columns, variables or expressions is generally called as data types. the major data types are,</p>
+
+<ol>
+  <li><strong>VARCHAR2(size)</strong> - Variable length character data, size determines the maximum size or length of character that can be stored in the variable or column. in case of VARCHAR2 data type, if the size of the character set or sting is smaller, then lower amount of memory will be consumed.</li>
+  <li><strong>CHAR(size)</strong> - Fixed length character data, size determines the  size or length of character that can be stored in the variable or column. If the size of the character set or sting is smaller, then the remaining amount of memory will still be consumed.</li>
+  <li><strong>NUMBER(p,s)</strong> - Variable length Numeric data. <strong>p</strong> is the precision (number of digits in a number. It ranges from 1 to 38) and <strong>s</strong> is the scale (number of digits to the right of the decimal point in a number. It ranges from -84 to 127).</li>
+  <li><strong>DATE</strong> - Stores Date Time in in internal numeric format. Default/Standard DATE data type. Stores Date time values such as century, year, month, day, hours, minutes &amp; seconds. The default date format is <em>DD-MON-RR</em></li>
+  <li><strong>TIMESTAMP</strong> - Similar to <strong>DATE</strong> but stores fractional seconds as well. Stores values such as century, year, month, day, hours, minutes, seconds &amp; fractional seconds.</li>
+  <li><strong>TIMESTAMP with TIMEZONE</strong> - Similar to <strong>TIMESTAMP</strong> but stores timezone of the Database Operating system time as well. Stores values such as century, year, month, day, hours, minutes, seconds, fractional seconds &amp; DB OS Timezone.</li>
+  <li><strong>TIMESTAMP with Local TIMEZONE</strong> - Similar to <strong>TIMESTAMP with TIMEZONE</strong> but stores timezone of the user session instead of database OS timezone. Stores values such as century, year, month, day, hours, minutes, seconds, fractional seconds &amp; user session Timezone.</li>
+  <li><strong>LONG</strong> - Variable length character data type with high capacity (upto 2GB). This is not recommended to be used as this is a legacy data type maintained mainly for backward compatibility.</li>
+  <li><strong>RAW &amp; LONG RAW</strong> - mainly used to store RAW binary Data. Similar to LONG, this is also a legacy data type and maintained for backward compatibility. Not recommended.</li>
+  <li><strong>CLOB</strong> - Recommended data type used mainly for storing large character values. Maximum size is (4 gigabytes - 1) * (database block size). CLOB is short for Character Large Objects.</li>
+  <li><strong>BLOB</strong> - Recommended data type used mainly for storing large unstructured data like images, videos, music etc. Maximum size is 4GB. BLOB is short for Binary Large Objects.</li>
+  <li><strong>BFILE</strong> - Recommended data type used mainly for storing the locator information to a binary file stored outside the database. Maximum size is 4GB.</li>
+  <li><strong>ROWID</strong> - data type of the pseudocolumn ROWID which stores the hexadecimal number used to uniquely identify a row in the database. ROWIDs have multiple uses, They are the fastest way to identify a row in a transaction, uniquely identifies a row in a table and show you how rows in tables are stored. ROWIDs can change in certain circumstances, During EXPORT/IMPORT cycle, table rebuild and when the row is deleted and recreated. ROWIDs does not change on select or update. ROWIDs can be used to identifying rows in transactions but not recommended to be stored in tables as a key value.</li>
+</ol>
+
+<p>We will continue the series of blog posts related to retrieving data in the future posts.</p>
+
+<p>Regards,<br />
+Sandeep</p>
+
+			   <hr>
+			   <div class="related-posts">
+				   <h5>Related Posts</h5>
+				   
+						<div class="row">
+							 <div class="col-sm-4 col-md-4 col-lg-4">
+								 <h6 style="text-align: right">
+								 	September  7, 2021
+								 </h6>
+							 </div>
+							 <div class="col-sm-8 col-md-8 col-lg-8">
+								 <h6 style="text-align: left">
+								 	<strong><a href="/mysite//Database_Concepts_2.html">Database Concepts Part II</a></strong>
+								 </h6>
+							 </div>
+						</div>
+					
+						<div class="row">
+							 <div class="col-sm-4 col-md-4 col-lg-4">
+								 <h6 style="text-align: right">
+								 	September  6, 2021
+								 </h6>
+							 </div>
+							 <div class="col-sm-8 col-md-8 col-lg-8">
+								 <h6 style="text-align: left">
+								 	<strong><a href="/mysite//Database_Concepts_1.html">Database Concepts Part I</a></strong>
+								 </h6>
+							 </div>
+						</div>
+					
+						<div class="row">
+							 <div class="col-sm-4 col-md-4 col-lg-4">
+								 <h6 style="text-align: right">
+								 	September  5, 2021
+								 </h6>
+							 </div>
+							 <div class="col-sm-8 col-md-8 col-lg-8">
+								 <h6 style="text-align: left">
+								 	<strong><a href="/mysite//new_endeavor.html">A New Endeavor</a></strong>
+								 </h6>
+							 </div>
+						</div>
+					
+			   </div>
+			</div>
+		</div>
+	</div>
+	
+
+</div>
+
+
+  </div>
+  <!-- Footer -->
+  <footer>
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted">© All rights reserved. Powered by <a href="http://jekyllrb.com/">Jekyll</a> and
+            <a href="http://www.github.com/jekyllt/sustain">sustain</a> with ♥</p>
+        </div>
+    </div>
+</footer>
+<div class="footer"></div>
+
+
+    <!-- <a href="https://github.com/jekyllt/sustain"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a> -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+    integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+    crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="/mysite/static/js/docs.min.js"></script>
+    <script src="/mysite/static/js/main.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/mysite/static/js/ie10-viewport-bug-workaround.js"></script>
+	  
+	  <!-- Mathjax Support -->
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+	  
+  </body>
+</html>

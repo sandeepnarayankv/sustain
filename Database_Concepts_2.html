@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta name="author" content="Sandeep Narayan Kizhakke Veettil" />
+    <meta name="description" content="Sandeep's Personal blog and resume">
+    <link rel="shortcut icon" type="image/x-icon" href="/mysite/static/img/favicon.ico">
+
+    
+      <title>Database Concepts Part II</title>
+    
+
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+    crossorigin="anonymous">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="/mysite/static/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="/mysite/static/css/syntax.css" />
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+  <!-- Main Body-->
+  <body>
+  <!-- Wrap all page content here -->
+  <div id="wrap">
+    <!-- Navbar header -->
+    <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/mysite/"><i class="fa fa-home"></i></a>
+    </div>
+    <div id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/mysite/blog.html">BLOG</a></li>
+        <li><a href="/mysite/projects.html">PROJECTS</a></li>
+        <li><a href="http://sandeepnarayankv.github.io/vitae">RESUME</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="container">
+	<div class="blog-post">
+		<h3>
+		  <strong><a href="/Database_Concepts_2.html">Database Concepts Part II</a></strong>
+		</h3>
+	</div>
+	<div class="blog-title">
+		<h4>
+		September  7, 2021
+			&nbsp;&nbsp;
+			
+			 <span class="label label-success">Tags</span>
+			
+			 <span class="label label-success">Blog</span>
+			
+			 <span class="label label-success">Post</span>
+			
+			 <span class="label label-success">Database</span>
+			
+			 <span class="label label-success">SQL</span>
+			
+			 <span class="label label-success">MySQL</span>
+			
+			 <span class="label label-success">Database Concepts</span>
+			
+		</h4>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="blogpost">
+			  <p>As a continuation for the previous post, <a href="https://sandeepnarayankv.github.io/mysite//Database_Concepts_1.html">Database Concepts Part I</a>, we are going to discuss further on the database concepts.</p>
+
+<h3 id="schema-objects"><strong>Schema Objects</strong></h3>
+
+<p>Independence of physical storeage from logical data structures is a characteristic of RDBMS. Database Schema is a collection of logical data structures or Schema objects &amp; is owned by DB User. Schema objects are user created structures which refer to the data in the database,</p>
+
+<p>Few of the schema objects are</p>
+
+<ol>
+  <li>Tables - Stores data in rows, the most important schema object.</li>
+  <li>Indexes - Schema object that helps fast access of rows. It maintains an entry for each indexed table or table cluster.</li>
+  <li>Partitions - Pieces of large tables or indexes.</li>
+  <li>Views - Stored queries or custom presentation of data in one or more tables. Stores no Data.</li>
+  <li>Sequences - Used to generate integers, typically for Primary Keys.</li>
+  <li>Dimensions - Defines parent child relations between pairs of column sets where all the columns of a column set come from same table.</li>
+  <li>Synonyms - alias for another schema object. it requires no storage other than definition in data dictionary.</li>
+  <li>PL/SQL Subprograms &amp; Packages - PL/SQL objects which can be stored on a schema. eg.: Packages, Procedures, Functions, Triggers etc.</li>
+  <li>DB Links - enables you to access schema objects on another Database.</li>
+</ol>
+
+<h3 id="non-schema-objects"><strong>Non Schema Objects</strong></h3>
+
+<p>Objects which are not stored in a DB Schema. eg.: Directories, Roles, Table Spaces, Users etc.</p>
+
+<h3 id="structured-query-language-sql"><strong>Structured Query Language (SQL)</strong></h3>
+
+<p>A set based <strong><em>declarative non procedural language</em></strong> providing interface to RDBMS used to describe <strong><em>what should be done</em></strong> unlike procedural languages which describe how it is done.</p>
+
+<p>SQL helps to,</p>
+
+<ul>
+  <li>Query data (DQL Commands)</li>
+  <li>insert, update &amp; delete Data (DML Commands)</li>
+  <li>Create, replace, alter, drop Database objects (DDL Commands)</li>
+  <li>Control access to Database objects (DCL Commands)</li>
+  <li>Maintains/guarantees data consistency and integrity</li>
+</ul>
+
+<h3 id="data-definition-language-ddl"><strong>Data Definition Language (DDL)</strong></h3>
+
+<p>Used to define database schema. used to create, modify or delete structure of schema objects. These commands are auto committed and will save to database permanently.
+The main commands are</p>
+
+<ul>
+  <li><strong>CREATE</strong> - used to create schema objects</li>
+</ul>
+
+<p>eg.:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> CREATE TABLE employee
+  (
+     name  VARCHAR2(20),
+     email VARCHAR2(100),
+     dob   DATE
+  );  
+</code></pre></div></div>
+<ul>
+  <li><strong>DROP</strong> - used to delete schema objects</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> DROP TABLE employee;   
+</code></pre></div></div>
+
+<ul>
+  <li><strong>ALTER</strong> - used to alter the structure of schema objects</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ALTER TABLE employee
+  ADD (address VARCHAR2(20));  
+
+ ALTER TABLE employee
+  MODIFY (name VARCHAR2(40));   
+</code></pre></div></div>
+<ul>
+  <li><strong>TRUNCATE</strong> - used to remove all records from a table.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> TRUNCATE TABLE employee;   
+</code></pre></div></div>
+
+<ul>
+  <li><strong>COMMENT</strong> - used to add comment to data dictionary.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- Single Line Comment
+/*
+This is a 
+Multi Line Comment
+*/
+ TRUNCATE TABLE employee;  
+</code></pre></div></div>
+
+<ul>
+  <li><strong>RENAME</strong> - used to rename a schema object.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ALTER TABLE employee
+  RENAME COLUMN name TO full_name; 
+</code></pre></div></div>
+
+<h3 id="data-query-language-dql"><strong>Data Query Language (DQL)</strong></h3>
+
+<p>Used to fetch/query data from the database. Only one command <strong>SELECT</strong> is used. Conditions are defined by <strong>WHERE</strong></p>
+
+<p>eg.:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> SELECT origin,
+       dest,
+       time_dep
+FROM   passengers
+WHERE  origin = 'pa';  
+</code></pre></div></div>
+
+<h3 id="data-manipulation-language-dml"><strong>Data Manipulation Language (DML)</strong></h3>
+
+<p>SQL Commands used for manipulation of data present in database.DML is not auto committed and cannot save the changes permanently. This can be rolledback.</p>
+
+<ul>
+  <li><strong>INSERT</strong> - used to insert data into a table.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO employee
+            (full_name,
+             email,
+             dob,
+             address)
+VALUES      ('Sonoo',
+             'abc@me.com',
+             '06-APR-2010',
+             '11, Newyork'); 
+</code></pre></div></div>
+
+<ul>
+  <li><strong>UPDATE</strong> - used to update data in a table.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>UPDATE employee
+SET    full_name = 'Sandeep'
+WHERE  full_name = 'Sonoo';
+</code></pre></div></div>
+
+<ul>
+  <li><strong>DELETE</strong> - used to delete data from table.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE FROM employee
+WHERE  full_name = 'Sonoo'; 
+</code></pre></div></div>
+
+<h3 id="data-control-language-dcl"><strong>Data Control Language (DCL)</strong></h3>
+
+<p>SQL Commands used for grant &amp; revoke rights &amp; permissions to database systems &amp; objects.</p>
+
+<ul>
+  <li><strong>GRANT</strong> - used to give users privilages to database systems &amp; objects.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> GRANT SELECT, UPDATE ON employee TO sandeep, raj;   
+</code></pre></div></div>
+
+<ul>
+  <li><strong>REVOKE</strong> - used to revoke or takeback privilages to database systems &amp; objects from an user.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> REVOKE SELECT, UPDATE ON employee TO sandeep, raj;  
+</code></pre></div></div>
+
+<h3 id="transaction-control-language-tcl"><strong>Transaction Control Language (TCL)</strong></h3>
+
+<p>SQL Commands used to deal with Transactions within a database. These commands are used with DML commands to automatically commit or rollback transactions. They auto commit and cannot be reverted.</p>
+
+<ul>
+  <li><strong>COMMIT</strong> - used to save/commit transactions.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> COMMIT;   
+</code></pre></div></div>
+
+<ul>
+  <li><strong>ROLLBACK</strong> - used to revert/rollback a transaction in case of failures or errors.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ROLLBACK;  
+</code></pre></div></div>
+
+<ul>
+  <li><strong>SAVEPOINT</strong> - used to set savepoint within a transaction.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> SAVEPOINT SAVEPOINT_NAME;  
+</code></pre></div></div>
+
+<ul>
+  <li><strong>SET TRANSACTION</strong> - used to specify charecteristics of a transaction. Used to establish the current transaction as read-only or read/write, establish its isolation level, assign it to a specified rollback segment, or assign a name to the transaction.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> SET TRANSACTION READ ONLY name 'Bangalore';   
+</code></pre></div></div>
+
+<h3 id="plsql--java"><strong>PL/SQL &amp; Java</strong></h3>
+
+<p>PL/SQL is a procedural extention of SQL helping to control the flow of SQL Statements, use variables &amp; error handling. It helps to store Application logic in Database.</p>
+
+<p>A stored procedure can be created using Java which can be called from PL/SQL &amp; vice versa.</p>
+
+<p>Regards,<br />
+Sandeep</p>
+
+			   <hr>
+			   <div class="related-posts">
+				   <h5>Related Posts</h5>
+				   
+						<div class="row">
+							 <div class="col-sm-4 col-md-4 col-lg-4">
+								 <h6 style="text-align: right">
+								 	September 10, 2021
+								 </h6>
+							 </div>
+							 <div class="col-sm-8 col-md-8 col-lg-8">
+								 <h6 style="text-align: left">
+								 	<strong><a href="/mysite//Retrieving_Data_1.html">Retrieving Data in SQL I</a></strong>
+								 </h6>
+							 </div>
+						</div>
+					
+						<div class="row">
+							 <div class="col-sm-4 col-md-4 col-lg-4">
+								 <h6 style="text-align: right">
+								 	September  6, 2021
+								 </h6>
+							 </div>
+							 <div class="col-sm-8 col-md-8 col-lg-8">
+								 <h6 style="text-align: left">
+								 	<strong><a href="/mysite//Database_Concepts_1.html">Database Concepts Part I</a></strong>
+								 </h6>
+							 </div>
+						</div>
+					
+						<div class="row">
+							 <div class="col-sm-4 col-md-4 col-lg-4">
+								 <h6 style="text-align: right">
+								 	September  5, 2021
+								 </h6>
+							 </div>
+							 <div class="col-sm-8 col-md-8 col-lg-8">
+								 <h6 style="text-align: left">
+								 	<strong><a href="/mysite//new_endeavor.html">A New Endeavor</a></strong>
+								 </h6>
+							 </div>
+						</div>
+					
+			   </div>
+			</div>
+		</div>
+	</div>
+	
+
+</div>
+
+
+  </div>
+  <!-- Footer -->
+  <footer>
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted">© All rights reserved. Powered by <a href="http://jekyllrb.com/">Jekyll</a> and
+            <a href="http://www.github.com/jekyllt/sustain">sustain</a> with ♥</p>
+        </div>
+    </div>
+</footer>
+<div class="footer"></div>
+
+
+    <!-- <a href="https://github.com/jekyllt/sustain"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a> -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+    integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+    crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="/mysite/static/js/docs.min.js"></script>
+    <script src="/mysite/static/js/main.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/mysite/static/js/ie10-viewport-bug-workaround.js"></script>
+	  
+	  <!-- Mathjax Support -->
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+	  
+  </body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta name="author" content="Sandeep Narayan Kizhakke Veettil" />
+    <meta name="description" content="Sandeep's Personal blog and resume">
+    <link rel="shortcut icon" type="image/x-icon" href="/mysite/static/img/favicon.ico">
+
+    
+      <title>Database Concepts Part I</title>
+    
+
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+    crossorigin="anonymous">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="/mysite/static/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="/mysite/static/css/syntax.css" />
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+  <!-- Main Body-->
+  <body>
+  <!-- Wrap all page content here -->
+  <div id="wrap">
+    <!-- Navbar header -->
+    <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/mysite/"><i class="fa fa-home"></i></a>
+    </div>
+    <div id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/mysite/blog.html">BLOG</a></li>
+        <li><a href="/mysite/projects.html">PROJECTS</a></li>
+        <li><a href="http://sandeepnarayankv.github.io/vitae">RESUME</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <div class="container">
+	<div class="blog-post">
+		<h3>
+		  <strong><a href="/Database_Concepts_1.html">Database Concepts Part I</a></strong>
+		</h3>
+	</div>
+	<div class="blog-title">
+		<h4>
+		September  6, 2021
+			&nbsp;&nbsp;
+			
+			 <span class="label label-success">Tags</span>
+			
+			 <span class="label label-success">Blog</span>
+			
+			 <span class="label label-success">Post</span>
+			
+			 <span class="label label-success">Database</span>
+			
+			 <span class="label label-success">SQL</span>
+			
+			 <span class="label label-success">MySQL</span>
+			
+			 <span class="label label-success">Database Concepts</span>
+			
+		</h4>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="blogpost">
+			  <p>An overview of the basic Database Concepts is what I could think of as a fitting initial post. as the post will be long even if it is just an overview, hence i have decided to split the post into two. This is the part I and I will publish the <a href="https://sandeepnarayankv.github.io/mysite//Database_Concepts_2.html">Part II</a> soon.</p>
+
+<p>When we talk about Database Concepte the best place to start is Data.</p>
+
+<h3 id="what-is-data"><strong>What is Data?</strong></h3>
+<p>According to Oxford Dictionary Data could be defined as “<strong><em>facts and statistics collected together for reference or analysis</em></strong>”</p>
+
+<p>In the digital world, we can mention data as “<strong><em>distinct pieces of information, usually formatted and stored in a way that is concordant with a specific purpose</em></strong>”.</p>
+
+<h3 id="what-is-database"><strong>What is Database?</strong></h3>
+
+<p>Oracle defines Database as “<strong><em>an organized
+collection of information treated as a unit</em></strong>” whose purpose is to <strong><em>collect, store and retrive information</em></strong>.</p>
+
+<p>I prefer a slightly more elaborate definition especially from a tech prespective, I would define Database as an <strong>Information System, used to Store, Access, Retrive &amp; Manipulate data</strong>.</p>
+
+<h3 id="database-management-systems-dbms"><strong>Database Management Systems (DBMS)</strong></h3>
+
+<p>A database application is software program that inteacts with the database to access &amp; manipulate data stored in it.</p>
+
+<p>A DBMS is a database application that controls the <strong>storage, organization and processing (Retrieval &amp; Manipulation)</strong> of the data.</p>
+
+<p>There are multiple types of DBMS Systems, the major ones are,</p>
+
+<ol>
+  <li>
+    <p><strong>Hierarchical DBMS</strong> - resembles a tree structure, each parent has one or more childs. An Operting system file structure is a good example. Follows One to Many relationships (1 Parent, Multiple Childs. 1 Child, 1 Parent)</p>
+  </li>
+  <li>
+    <p><strong>Network DBMS</strong> - Similar to Hierarchical DBMS, but follows Many to Many relationships (1 Parent, Multiple Childs. 1 Child, Multiple Parents).</p>
+  </li>
+  <li>
+    <p><strong>Object Oriented DBMS</strong> - Information is represented as Objects with relationships between Objects. Similar to Object Oriented Program Languages.</p>
+  </li>
+  <li>
+    <p><strong>NO-SQL</strong> - A popular alternative to relational databases, NoSQL databases take a variety of forms and allow you to store and manipulate large amounts of unstructured and semi-structured data. Popular example is MongoDB.</p>
+  </li>
+  <li>
+    <p><strong>Relational DBMS</strong> - The most popular DBMS System, based on relational model, generally includes an SQL Engine. This will be discussed in detail below.</p>
+  </li>
+</ol>
+
+<h3 id="relational-model"><strong>Relational Model</strong></h3>
+
+<p>First Described by Edgar F. Codd in 1969, the relational model for databases is an approach for managing data using <strong>Structure</strong> (Well-defined objects store or access the data of a database), <strong>Operations</strong> (Clearly defined actions enable applications to manipulate the data and structures of a database) and <strong>Integrity Rules</strong> (govern operations on the data and structures of a database) consistant with <a href="https://en.wikipedia.org/wiki/First-order_logic"><strong><em>first-order predicate logic</em></strong></a> (a collection of formal systems used in mathematics, philosophy, linguistics, and computer science) where all data is represented in terms of tuples, grouped into relations.</p>
+
+<h3 id="relational-databases"><strong>Relational Databases</strong></h3>
+
+<p>A database organized as per the Relational model is a relational database. a relational database stores data in a set of relations (Tables)</p>
+
+<p><strong>Table</strong> is a two diamentional representation of rows (tuples) &amp; columns (Attributes).</p>
+
+<p><strong>Relations</strong> are stored in Relational databases as Tables. Relations are a collection of Tables.</p>
+
+<p><strong>Tuple</strong> is an unordered set of Attributes and represents a row of a table and a single record in a relation.</p>
+
+<p><strong>Attribute</strong> is defined to store only one type of value. eazch row/tuple will have multiple attribute. Attribute is also know as Column.</p>
+
+<h3 id="relational-dbms-rdbms"><strong>Relational DBMS (RDBMS)</strong></h3>
+
+<p><strong>R</strong>elational <strong>D</strong>ata<strong>B</strong>ase <strong>M</strong>anagement <strong>S</strong>ystems is a program that allows us to create, fetch, delete, and update a relational database. The guiding principle for RDBMS system is that he values of each table are related to others and can handle huge volumes of data.</p>
+
+<p>Relational Database Management Systems maintains data integrity by simulating the following features:</p>
+<ul>
+  <li>Entity Integrity: Two records of the database table can never be completely duplicate.</li>
+  <li>Referential Integrity: Only the rows of those tables can be deleted which are not used by other tables as it will lead to data inconsistency.</li>
+  <li>User-defined Integrity: Rules defined by the users based on confidentiality and access.</li>
+  <li>Domain integrity: The columns of the database tables are enclosed within some structured limits, based on default values, type of data or ranges.</li>
+</ul>
+
+<p>Major Characteristics of RDBMS systems are:</p>
+
+<ul>
+  <li>Data should be represented in tables, with values in columns within rows.</li>
+  <li>Unique data in a row/tuple. No duplicate rows.</li>
+  <li>Tables are related using foreign keys</li>
+  <li>Data within a column must be accessible by specifying the table name, the column name, and the value of the primary key of the row.</li>
+  <li>The DBMS must support missing and inapplicable information in a systematic way, distinct from regular values and independent of data type.</li>
+  <li>The DBMS must support an active on-line catalogue.</li>
+  <li>The DBMS must support at least one language that can be used independently and from within programs, and supports data definition operations, data manipulation, constraints, and transaction management.</li>
+  <li>Views must be updatable by the system.</li>
+  <li>The DBMS must support insert, update, and delete operations on sets.</li>
+  <li>The DBMS must support logical data independence.</li>
+  <li>The DBMS must support physical data independence.</li>
+  <li>Integrity constraints must be stored within the catalogue, separate from the application.</li>
+  <li>The DBMS must support distribution independence.  The existing application should run when the existing data is redistributed or when the DBMS is redistributed.</li>
+  <li>If the DBMS provides a low level interface (row at a time), that interface cannot bypass the integrity constraints.</li>
+</ul>
+
+<h4 id="advantages-of-rdbms"><strong>Advantages of RDBMS</strong></h4>
+
+<ul>
+  <li>Managablity: tables can be independently manipulated.</li>
+  <li>Secure: multiple levels of security hence more secure also Access data can be controlled.</li>
+  <li>Flexible: Single point updation. Extendable &amp; scalable. Easy data access using SQL queries.
+Users: multiple users access.</li>
+  <li>Can handle large amount of data.</li>
+  <li>Easy Data Handling:
+    <ul>
+      <li>Faster Data Access.</li>
+      <li>Data redundancy or duplicity is avoided (Keys, Indexes &amp; normalization)</li>
+    </ul>
+  </li>
+  <li>Higher Data consistency because to Atomicity Consistency Isolation Durability (ACID) properties.</li>
+  <li>Higher Fault Tolerance due simultaneous access and helps system recovery as a result od replication.</li>
+</ul>
+
+<h4 id="disdvantages-of-rdbms"><strong>Disdvantages of RDBMS</strong></h4>
+
+<ul>
+  <li>High Cost</li>
+  <li>Scalability requires additional power, and memory are required.</li>
+  <li>High Volume of Data causes complexity and can impact performance.</li>
+  <li>The fields or columns has set limits which could lead to loss of data</li>
+</ul>
+
+<p>Two further terms of Note are,</p>
+
+<p><strong>Arity</strong> of a relation is the number of objects involved in any instance of that relation.</p>
+
+<p><strong>Cardinality</strong> has two different meanings depending on the context of it’s usage – one for data modeling and the other for SQL statements.
+In the context of <em>data modeling</em>, it simply refers to the relationship that one table has with another table (One to Many, One to One, Many to Many etc.).
+In <em>SQL</em>, the cardinality of a column in a given table refers to the number of unique values that appear in the table for that column. So, remember that the cardinality is a number.This impacts performance a lot, because it influences the query execution plan.</p>
+
+<p>Regards,<br />
+Sandeep</p>
+
+			   <hr>
+			   <div class="related-posts">
+				   <h5>Related Posts</h5>
+				   
+						<div class="row">
+							 <div class="col-sm-4 col-md-4 col-lg-4">
+								 <h6 style="text-align: right">
+								 	September 10, 2021
+								 </h6>
+							 </div>
+							 <div class="col-sm-8 col-md-8 col-lg-8">
+								 <h6 style="text-align: left">
+								 	<strong><a href="/mysite//Retrieving_Data_1.html">Retrieving Data in SQL I</a></strong>
+								 </h6>
+							 </div>
+						</div>
+					
+						<div class="row">
+							 <div class="col-sm-4 col-md-4 col-lg-4">
+								 <h6 style="text-align: right">
+								 	September  7, 2021
+								 </h6>
+							 </div>
+							 <div class="col-sm-8 col-md-8 col-lg-8">
+								 <h6 style="text-align: left">
+								 	<strong><a href="/mysite//Database_Concepts_2.html">Database Concepts Part II</a></strong>
+								 </h6>
+							 </div>
+						</div>
+					
+						<div class="row">
+							 <div class="col-sm-4 col-md-4 col-lg-4">
+								 <h6 style="text-align: right">
+								 	September  5, 2021
+								 </h6>
+							 </div>
+							 <div class="col-sm-8 col-md-8 col-lg-8">
+								 <h6 style="text-align: left">
+								 	<strong><a href="/mysite//new_endeavor.html">A New Endeavor</a></strong>
+								 </h6>
+							 </div>
+						</div>
+					
+			   </div>
+			</div>
+		</div>
+	</div>
+	
+
+</div>
+
+
+  </div>
+  <!-- Footer -->
+  <footer>
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted">© All rights reserved. Powered by <a href="http://jekyllrb.com/">Jekyll</a> and
+            <a href="http://www.github.com/jekyllt/sustain">sustain</a> with ♥</p>
+        </div>
+    </div>
+</footer>
+<div class="footer"></div>
+
+
+    <!-- <a href="https://github.com/jekyllt/sustain"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a> -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+    integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+    crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="/mysite/static/js/docs.min.js"></script>
+    <script src="/mysite/static/js/main.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/mysite/static/js/ie10-viewport-bug-workaround.js"></script>
+	  
+	  <!-- Mathjax Support -->
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+	  
+  </body>
+</html>

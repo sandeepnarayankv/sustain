@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  
+    <title type="text" xml:lang="en">Sandeep Narayan</title>
+    <link type="application/atom+xml" rel="self" href="http://sandeepnarayankv.github.io//atom.xml"/>
+  
+  <link href="http://sandeepnarayankv.github.io//"/>
+  <id>http://sandeepnarayankv.github.io//</id>
+  <updated>2021-10-06T08:29:05Z</updated>
+  <author>
+    <name>Sandeep Narayan Kizhakke Veettil</name>
+    <email>sandeep.narayan.kv@gmail.com</email>
+  </author>
+  <rights type="text">Copyright © 2021 Sandeep Narayan Kizhakke Veettil. All rights reserved.</rights>
+  
+  <entry>
+  <title type="text">Retrieving Data in SQL I</title>
+  <link rel="alternate" type="text/html" href="http://sandeepnarayankv.github.io//Retrieving_Data_1.html" />
+  <id>http://sandeepnarayankv.github.io//Retrieving_Data_1</id>
+  <published>2021-09-10T00:00:00Z</published>
+  <updated>2021-09-10T00:00:00Z</updated>
+  <content type="html"><![CDATA[ <p>In this series we will looking at concepts which are related to retrieving data in SQL. This is the first post of the series. We will discuss about various data types, NULL values, how to get the details of DB objects using DESC[RIBE] and INFO[RMATION][+] commands and also touch base on error messages, DUAL table, Quote Operator, Arithmetic operators, DISTINCT &amp; Unique Keywords and concatenation operators, not necessarily in that order in this series.</p>
+
+<h3 id="data-types"><strong>Data Types</strong></h3>
+
+<p>Columns, variables &amp; expressions stores different types of data, the attribute that specifies the type of data in the columns, variables or expressions is generally called as data types. the major data types are,</p>
+
+<ol>
+  <li><strong>VARCHAR2(size)</strong> - Variable length character data, size determines the maximum size or length of character that can be stored in the variable or column. in case of VARCHAR2 data type, if the size of the character set or sting is smaller, then lower amount of memory will be consumed.</li>
+  <li><strong>CHAR(size)</strong> - Fixed length character data, size determines the  size or length of character that can be stored in the variable or column. If the size of the character set or sting is smaller, then the remaining amount of memory will still be consumed.</li>
+  <li><strong>NUMBER(p,s)</strong> - Variable length Numeric data. <strong>p</strong> is the precision (number of digits in a number. It ranges from 1 to 38) and <strong>s</strong> is the scale (number of digits to the right of the decimal point in a number. It ranges from -84 to 127).</li>
+  <li><strong>DATE</strong> - Stores Date Time in in internal numeric format. Default/Standard DATE data type. Stores Date time values such as century, year, month, day, hours, minutes &amp; seconds. The default date format is <em>DD-MON-RR</em></li>
+  <li><strong>TIMESTAMP</strong> - Similar to <strong>DATE</strong> but stores fractional seconds as well. Stores values such as century, year, month, day, hours, minutes, seconds &amp; fractional seconds.</li>
+  <li><strong>TIMESTAMP with TIMEZONE</strong> - Similar to <strong>TIMESTAMP</strong> but stores timezone of the Database Operating system time as well. Stores values such as century, year, month, day, hours, minutes, seconds, fractional seconds &amp; DB OS Timezone.</li>
+  <li><strong>TIMESTAMP with Local TIMEZONE</strong> - Similar to <strong>TIMESTAMP with TIMEZONE</strong> but stores timezone of the user session instead of database OS timezone. Stores values such as century, year, month, day, hours, minutes, seconds, fractional seconds &amp; user session Timezone.</li>
+  <li><strong>LONG</strong> - Variable length character data type with high capacity (upto 2GB). This is not recommended to be used as this is a legacy data type maintained mainly for backward compatibility.</li>
+  <li><strong>RAW &amp; LONG RAW</strong> - mainly used to store RAW binary Data. Similar to LONG, this is also a legacy data type and maintained for backward compatibility. Not recommended.</li>
+  <li><strong>CLOB</strong> - Recommended data type used mainly for storing large character values. Maximum size is (4 gigabytes - 1) * (database block size). CLOB is short for Character Large Objects.</li>
+  <li><strong>BLOB</strong> - Recommended data type used mainly for storing large unstructured data like images, videos, music etc. Maximum size is 4GB. BLOB is short for Binary Large Objects.</li>
+  <li><strong>BFILE</strong> - Recommended data type used mainly for storing the locator information to a binary file stored outside the database. Maximum size is 4GB.</li>
+  <li><strong>ROWID</strong> - data type of the pseudocolumn ROWID which stores the hexadecimal number used to uniquely identify a row in the database. ROWIDs have multiple uses, They are the fastest way to identify a row in a transaction, uniquely identifies a row in a table and show you how rows in tables are stored. ROWIDs can change in certain circumstances, During EXPORT/IMPORT cycle, table rebuild and when the row is deleted and recreated. ROWIDs does not change on select or update. ROWIDs can be used to identifying rows in transactions but not recommended to be stored in tables as a key value.</li>
+</ol>
+
+<p>We will continue the series of blog posts related to retrieving data in the future posts.</p>
+
+<p>Regards,<br />
+Sandeep</p>
+ ]]></content>
+</entry>
+
+
+  <entry>
+  <title type="text">Database Concepts Part II</title>
+  <link rel="alternate" type="text/html" href="http://sandeepnarayankv.github.io//Database_Concepts_2.html" />
+  <id>http://sandeepnarayankv.github.io//Database_Concepts_2</id>
+  <published>2021-09-07T00:00:00Z</published>
+  <updated>2021-09-07T00:00:00Z</updated>
+  <content type="html"><![CDATA[ <p>As a continuation for the previous post, <a href="https://sandeepnarayankv.github.io/mysite//Database_Concepts_1.html">Database Concepts Part I</a>, we are going to discuss further on the database concepts.</p>
+
+<h3 id="schema-objects"><strong>Schema Objects</strong></h3>
+
+<p>Independence of physical storeage from logical data structures is a characteristic of RDBMS. Database Schema is a collection of logical data structures or Schema objects &amp; is owned by DB User. Schema objects are user created structures which refer to the data in the database,</p>
+
+<p>Few of the schema objects are</p>
+
+<ol>
+  <li>Tables - Stores data in rows, the most important schema object.</li>
+  <li>Indexes - Schema object that helps fast access of rows. It maintains an entry for each indexed table or table cluster.</li>
+  <li>Partitions - Pieces of large tables or indexes.</li>
+  <li>Views - Stored queries or custom presentation of data in one or more tables. Stores no Data.</li>
+  <li>Sequences - Used to generate integers, typically for Primary Keys.</li>
+  <li>Dimensions - Defines parent child relations between pairs of column sets where all the columns of a column set come from same table.</li>
+  <li>Synonyms - alias for another schema object. it requires no storage other than definition in data dictionary.</li>
+  <li>PL/SQL Subprograms &amp; Packages - PL/SQL objects which can be stored on a schema. eg.: Packages, Procedures, Functions, Triggers etc.</li>
+  <li>DB Links - enables you to access schema objects on another Database.</li>
+</ol>
+
+<h3 id="non-schema-objects"><strong>Non Schema Objects</strong></h3>
+
+<p>Objects which are not stored in a DB Schema. eg.: Directories, Roles, Table Spaces, Users etc.</p>
+
+<h3 id="structured-query-language-sql"><strong>Structured Query Language (SQL)</strong></h3>
+
+<p>A set based <strong><em>declarative non procedural language</em></strong> providing interface to RDBMS used to describe <strong><em>what should be done</em></strong> unlike procedural languages which describe how it is done.</p>
+
+<p>SQL helps to,</p>
+
+<ul>
+  <li>Query data (DQL Commands)</li>
+  <li>insert, update &amp; delete Data (DML Commands)</li>
+  <li>Create, replace, alter, drop Database objects (DDL Commands)</li>
+  <li>Control access to Database objects (DCL Commands)</li>
+  <li>Maintains/guarantees data consistency and integrity</li>
+</ul>
+
+<h3 id="data-definition-language-ddl"><strong>Data Definition Language (DDL)</strong></h3>
+
+<p>Used to define database schema. used to create, modify or delete structure of schema objects. These commands are auto committed and will save to database permanently.
+The main commands are</p>
+
+<ul>
+  <li><strong>CREATE</strong> - used to create schema objects</li>
+</ul>
+
+<p>eg.:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> CREATE TABLE employee
+  (
+     name  VARCHAR2(20),
+     email VARCHAR2(100),
+     dob   DATE
+  );  
+</code></pre></div></div>
+<ul>
+  <li><strong>DROP</strong> - used to delete schema objects</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> DROP TABLE employee;   
+</code></pre></div></div>
+
+<ul>
+  <li><strong>ALTER</strong> - used to alter the structure of schema objects</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ALTER TABLE employee
+  ADD (address VARCHAR2(20));  
+
+ ALTER TABLE employee
+  MODIFY (name VARCHAR2(40));   
+</code></pre></div></div>
+<ul>
+  <li><strong>TRUNCATE</strong> - used to remove all records from a table.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> TRUNCATE TABLE employee;   
+</code></pre></div></div>
+
+<ul>
+  <li><strong>COMMENT</strong> - used to add comment to data dictionary.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-- Single Line Comment
+/*
+This is a 
+Multi Line Comment
+*/
+ TRUNCATE TABLE employee;  
+</code></pre></div></div>
+
+<ul>
+  <li><strong>RENAME</strong> - used to rename a schema object.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ALTER TABLE employee
+  RENAME COLUMN name TO full_name; 
+</code></pre></div></div>
+
+<h3 id="data-query-language-dql"><strong>Data Query Language (DQL)</strong></h3>
+
+<p>Used to fetch/query data from the database. Only one command <strong>SELECT</strong> is used. Conditions are defined by <strong>WHERE</strong></p>
+
+<p>eg.:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> SELECT origin,
+       dest,
+       time_dep
+FROM   passengers
+WHERE  origin = 'pa';  
+</code></pre></div></div>
+
+<h3 id="data-manipulation-language-dml"><strong>Data Manipulation Language (DML)</strong></h3>
+
+<p>SQL Commands used for manipulation of data present in database.DML is not auto committed and cannot save the changes permanently. This can be rolledback.</p>
+
+<ul>
+  <li><strong>INSERT</strong> - used to insert data into a table.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO employee
+            (full_name,
+             email,
+             dob,
+             address)
+VALUES      ('Sonoo',
+             'abc@me.com',
+             '06-APR-2010',
+             '11, Newyork'); 
+</code></pre></div></div>
+
+<ul>
+  <li><strong>UPDATE</strong> - used to update data in a table.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>UPDATE employee
+SET    full_name = 'Sandeep'
+WHERE  full_name = 'Sonoo';
+</code></pre></div></div>
+
+<ul>
+  <li><strong>DELETE</strong> - used to delete data from table.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE FROM employee
+WHERE  full_name = 'Sonoo'; 
+</code></pre></div></div>
+
+<h3 id="data-control-language-dcl"><strong>Data Control Language (DCL)</strong></h3>
+
+<p>SQL Commands used for grant &amp; revoke rights &amp; permissions to database systems &amp; objects.</p>
+
+<ul>
+  <li><strong>GRANT</strong> - used to give users privilages to database systems &amp; objects.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> GRANT SELECT, UPDATE ON employee TO sandeep, raj;   
+</code></pre></div></div>
+
+<ul>
+  <li><strong>REVOKE</strong> - used to revoke or takeback privilages to database systems &amp; objects from an user.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> REVOKE SELECT, UPDATE ON employee TO sandeep, raj;  
+</code></pre></div></div>
+
+<h3 id="transaction-control-language-tcl"><strong>Transaction Control Language (TCL)</strong></h3>
+
+<p>SQL Commands used to deal with Transactions within a database. These commands are used with DML commands to automatically commit or rollback transactions. They auto commit and cannot be reverted.</p>
+
+<ul>
+  <li><strong>COMMIT</strong> - used to save/commit transactions.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> COMMIT;   
+</code></pre></div></div>
+
+<ul>
+  <li><strong>ROLLBACK</strong> - used to revert/rollback a transaction in case of failures or errors.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ROLLBACK;  
+</code></pre></div></div>
+
+<ul>
+  <li><strong>SAVEPOINT</strong> - used to set savepoint within a transaction.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> SAVEPOINT SAVEPOINT_NAME;  
+</code></pre></div></div>
+
+<ul>
+  <li><strong>SET TRANSACTION</strong> - used to specify charecteristics of a transaction. Used to establish the current transaction as read-only or read/write, establish its isolation level, assign it to a specified rollback segment, or assign a name to the transaction.</li>
+</ul>
+
+<p>eg.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> SET TRANSACTION READ ONLY name 'Bangalore';   
+</code></pre></div></div>
+
+<h3 id="plsql--java"><strong>PL/SQL &amp; Java</strong></h3>
+
+<p>PL/SQL is a procedural extention of SQL helping to control the flow of SQL Statements, use variables &amp; error handling. It helps to store Application logic in Database.</p>
+
+<p>A stored procedure can be created using Java which can be called from PL/SQL &amp; vice versa.</p>
+
+<p>Regards,<br />
+Sandeep</p>
+ ]]></content>
+</entry>
+
+
+  <entry>
+  <title type="text">Database Concepts Part I</title>
+  <link rel="alternate" type="text/html" href="http://sandeepnarayankv.github.io//Database_Concepts_1.html" />
+  <id>http://sandeepnarayankv.github.io//Database_Concepts_1</id>
+  <published>2021-09-06T00:00:00Z</published>
+  <updated>2021-09-06T00:00:00Z</updated>
+  <content type="html"><![CDATA[ <p>An overview of the basic Database Concepts is what I could think of as a fitting initial post. as the post will be long even if it is just an overview, hence i have decided to split the post into two. This is the part I and I will publish the <a href="https://sandeepnarayankv.github.io/mysite//Database_Concepts_2.html">Part II</a> soon.</p>
+
+<p>When we talk about Database Concepte the best place to start is Data.</p>
+
+<h3 id="what-is-data"><strong>What is Data?</strong></h3>
+<p>According to Oxford Dictionary Data could be defined as “<strong><em>facts and statistics collected together for reference or analysis</em></strong>”</p>
+
+<p>In the digital world, we can mention data as “<strong><em>distinct pieces of information, usually formatted and stored in a way that is concordant with a specific purpose</em></strong>”.</p>
+
+<h3 id="what-is-database"><strong>What is Database?</strong></h3>
+
+<p>Oracle defines Database as “<strong><em>an organized
+collection of information treated as a unit</em></strong>” whose purpose is to <strong><em>collect, store and retrive information</em></strong>.</p>
+
+<p>I prefer a slightly more elaborate definition especially from a tech prespective, I would define Database as an <strong>Information System, used to Store, Access, Retrive &amp; Manipulate data</strong>.</p>
+
+<h3 id="database-management-systems-dbms"><strong>Database Management Systems (DBMS)</strong></h3>
+
+<p>A database application is software program that inteacts with the database to access &amp; manipulate data stored in it.</p>
+
+<p>A DBMS is a database application that controls the <strong>storage, organization and processing (Retrieval &amp; Manipulation)</strong> of the data.</p>
+
+<p>There are multiple types of DBMS Systems, the major ones are,</p>
+
+<ol>
+  <li>
+    <p><strong>Hierarchical DBMS</strong> - resembles a tree structure, each parent has one or more childs. An Operting system file structure is a good example. Follows One to Many relationships (1 Parent, Multiple Childs. 1 Child, 1 Parent)</p>
+  </li>
+  <li>
+    <p><strong>Network DBMS</strong> - Similar to Hierarchical DBMS, but follows Many to Many relationships (1 Parent, Multiple Childs. 1 Child, Multiple Parents).</p>
+  </li>
+  <li>
+    <p><strong>Object Oriented DBMS</strong> - Information is represented as Objects with relationships between Objects. Similar to Object Oriented Program Languages.</p>
+  </li>
+  <li>
+    <p><strong>NO-SQL</strong> - A popular alternative to relational databases, NoSQL databases take a variety of forms and allow you to store and manipulate large amounts of unstructured and semi-structured data. Popular example is MongoDB.</p>
+  </li>
+  <li>
+    <p><strong>Relational DBMS</strong> - The most popular DBMS System, based on relational model, generally includes an SQL Engine. This will be discussed in detail below.</p>
+  </li>
+</ol>
+
+<h3 id="relational-model"><strong>Relational Model</strong></h3>
+
+<p>First Described by Edgar F. Codd in 1969, the relational model for databases is an approach for managing data using <strong>Structure</strong> (Well-defined objects store or access the data of a database), <strong>Operations</strong> (Clearly defined actions enable applications to manipulate the data and structures of a database) and <strong>Integrity Rules</strong> (govern operations on the data and structures of a database) consistant with <a href="https://en.wikipedia.org/wiki/First-order_logic"><strong><em>first-order predicate logic</em></strong></a> (a collection of formal systems used in mathematics, philosophy, linguistics, and computer science) where all data is represented in terms of tuples, grouped into relations.</p>
+
+<h3 id="relational-databases"><strong>Relational Databases</strong></h3>
+
+<p>A database organized as per the Relational model is a relational database. a relational database stores data in a set of relations (Tables)</p>
+
+<p><strong>Table</strong> is a two diamentional representation of rows (tuples) &amp; columns (Attributes).</p>
+
+<p><strong>Relations</strong> are stored in Relational databases as Tables. Relations are a collection of Tables.</p>
+
+<p><strong>Tuple</strong> is an unordered set of Attributes and represents a row of a table and a single record in a relation.</p>
+
+<p><strong>Attribute</strong> is defined to store only one type of value. eazch row/tuple will have multiple attribute. Attribute is also know as Column.</p>
+
+<h3 id="relational-dbms-rdbms"><strong>Relational DBMS (RDBMS)</strong></h3>
+
+<p><strong>R</strong>elational <strong>D</strong>ata<strong>B</strong>ase <strong>M</strong>anagement <strong>S</strong>ystems is a program that allows us to create, fetch, delete, and update a relational database. The guiding principle for RDBMS system is that he values of each table are related to others and can handle huge volumes of data.</p>
+
+<p>Relational Database Management Systems maintains data integrity by simulating the following features:</p>
+<ul>
+  <li>Entity Integrity: Two records of the database table can never be completely duplicate.</li>
+  <li>Referential Integrity: Only the rows of those tables can be deleted which are not used by other tables as it will lead to data inconsistency.</li>
+  <li>User-defined Integrity: Rules defined by the users based on confidentiality and access.</li>
+  <li>Domain integrity: The columns of the database tables are enclosed within some structured limits, based on default values, type of data or ranges.</li>
+</ul>
+
+<p>Major Characteristics of RDBMS systems are:</p>
+
+<ul>
+  <li>Data should be represented in tables, with values in columns within rows.</li>
+  <li>Unique data in a row/tuple. No duplicate rows.</li>
+  <li>Tables are related using foreign keys</li>
+  <li>Data within a column must be accessible by specifying the table name, the column name, and the value of the primary key of the row.</li>
+  <li>The DBMS must support missing and inapplicable information in a systematic way, distinct from regular values and independent of data type.</li>
+  <li>The DBMS must support an active on-line catalogue.</li>
+  <li>The DBMS must support at least one language that can be used independently and from within programs, and supports data definition operations, data manipulation, constraints, and transaction management.</li>
+  <li>Views must be updatable by the system.</li>
+  <li>The DBMS must support insert, update, and delete operations on sets.</li>
+  <li>The DBMS must support logical data independence.</li>
+  <li>The DBMS must support physical data independence.</li>
+  <li>Integrity constraints must be stored within the catalogue, separate from the application.</li>
+  <li>The DBMS must support distribution independence.  The existing application should run when the existing data is redistributed or when the DBMS is redistributed.</li>
+  <li>If the DBMS provides a low level interface (row at a time), that interface cannot bypass the integrity constraints.</li>
+</ul>
+
+<h4 id="advantages-of-rdbms"><strong>Advantages of RDBMS</strong></h4>
+
+<ul>
+  <li>Managablity: tables can be independently manipulated.</li>
+  <li>Secure: multiple levels of security hence more secure also Access data can be controlled.</li>
+  <li>Flexible: Single point updation. Extendable &amp; scalable. Easy data access using SQL queries.
+Users: multiple users access.</li>
+  <li>Can handle large amount of data.</li>
+  <li>Easy Data Handling:
+    <ul>
+      <li>Faster Data Access.</li>
+      <li>Data redundancy or duplicity is avoided (Keys, Indexes &amp; normalization)</li>
+    </ul>
+  </li>
+  <li>Higher Data consistency because to Atomicity Consistency Isolation Durability (ACID) properties.</li>
+  <li>Higher Fault Tolerance due simultaneous access and helps system recovery as a result od replication.</li>
+</ul>
+
+<h4 id="disdvantages-of-rdbms"><strong>Disdvantages of RDBMS</strong></h4>
+
+<ul>
+  <li>High Cost</li>
+  <li>Scalability requires additional power, and memory are required.</li>
+  <li>High Volume of Data causes complexity and can impact performance.</li>
+  <li>The fields or columns has set limits which could lead to loss of data</li>
+</ul>
+
+<p>Two further terms of Note are,</p>
+
+<p><strong>Arity</strong> of a relation is the number of objects involved in any instance of that relation.</p>
+
+<p><strong>Cardinality</strong> has two different meanings depending on the context of it’s usage – one for data modeling and the other for SQL statements.
+In the context of <em>data modeling</em>, it simply refers to the relationship that one table has with another table (One to Many, One to One, Many to Many etc.).
+In <em>SQL</em>, the cardinality of a column in a given table refers to the number of unique values that appear in the table for that column. So, remember that the cardinality is a number.This impacts performance a lot, because it influences the query execution plan.</p>
+
+<p>Regards,<br />
+Sandeep</p>
+ ]]></content>
+</entry>
+
+
+  <entry>
+  <title type="text">A New Endeavor</title>
+  <link rel="alternate" type="text/html" href="http://sandeepnarayankv.github.io//new_endeavor.html" />
+  <id>http://sandeepnarayankv.github.io//new_endeavor</id>
+  <published>2021-09-05T00:00:00Z</published>
+  <updated>2021-09-05T00:00:00Z</updated>
+  <content type="html"><![CDATA[ <p>Hi All,</p>
+
+<p>I am an SQL &amp; PL/SQL Developer mainly developing custom solutions and interfaces in the Oracle ERP landscape. I have around 15 years of experience in working with SQL &amp; PL/SQL. I have also consulted on the extended space of MYSQL, SQL Server &amp; PostgreSQL and in personal projects. I started looking at Oracle 19c as requirement for a new upgrade project &amp; MongoDB for a personal Project and I decided that it will be a good practice to document what I have learned all these years in my projects and the new things I keep finding about. For example, I recently learned about the <strong>info+</strong> command in SQL to get object details (an advanced form of <strong>desc</strong> &amp; <strong>info</strong> commands). Since I mainly use Tools like SQL Developer and Toad for interacting with the Database, you miss out on these commands sometimes as these GUI based tools does provide a better and more deeper look at objects than any of these commands as they consolidate multiple commands.</p>
+
+<p>I am looking forward to this process of documenting my learning for myself and the world. This is a promise to myself which I believe I will be able to keep.</p>
+
+<p>Regards,
+Sandeep</p>
+ ]]></content>
+</entry>
+
+
+
+</feed>
